@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studie: Informationsdarstellung</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --thm-green: #80ba24;
+            --thm-dark: #2c3e50;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f8;
+            padding: 30px 0;
+            color: #333;
+        }
+
+        /* ===== صفحة الترحيب ===== */
+        .welcome-page {
+            background-color: var(--thm-green);
+            background-image: linear-gradient(135deg, #80ba24 0%, #6da61e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .welcome-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 40px;
+            width: 100%;
+            max-width: 750px;
+            border-top: 6px solid var(--thm-green);
+            margin: 0 auto;
+        }
+
+        .header-logo {
+            font-weight: 700;
+            color: var(--thm-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .welcome-card h1 {
+            font-weight: 800;
+            color: var(--thm-dark);
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+        }
+
+        h4.section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #f0f0f0;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--thm-green);
+            box-shadow: 0 0 0 4px rgba(128, 186, 36, 0.1);
+        }
+
+        .btn-start {
+            background-color: var(--thm-green);
+            color: white;
+            padding: 15px 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .btn-start:hover {
+            background-color: #6da61e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(128, 186, 36, 0.3);
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+        }
+
+        /* ===== صفحات المنتجات ===== */
+        .main-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            padding: 0;
+            max-width: 950px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-top: 5px solid var(--thm-green);
+        }
+
+        .product-header {
+            position: relative;
+            height: 380px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .product-header img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        .product-header img:hover {
+            transform: scale(1.05);
+        }
+        .product-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px;
+            color: white;
+        }
+
+        .content-area {
+            padding: 40px;
+        }
+
+        .question-box {
+            background-color: #f0f7e6;
+            border: 1px solid #dcebc4;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--thm-green);
+        }
+
+        /* تعديل: جعل الجدول متجاوب */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            min-width: 600px; /* ضمان عرض جيد على الموبايل */
+        }
+        .data-table th, .data-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+        }
+        .data-table th {
+            background-color: #f9f9f9;
+            width: 35%;
+            font-weight: 600;
+            color: var(--thm-dark);
+        }
+        .section-header {
+            background-color: var(--thm-green);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .price-tag {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            background-color: var(--thm-green);
+            padding: 5px 15px;
+            border-radius: 4px;
+            float: right;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-next {
+            background-color: var(--thm-green);
+            color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            float: right;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn-next:hover {
+            background-color: #6da61e;
+            transform: translateY(-2px);
+        }
+
+        /* ===== صفحة SUS ===== */
+        .sus-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 5px solid var(--thm-green);
+        }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0 35px 0;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            background-color: #fafafa;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .likert-item {
+            text-align: center;
+            width: 18%;
+            position: relative;
+        }
+        .likert-item label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .likert-item input {
+            cursor: pointer;
+            width: 22px;
+            height: 22px;
+            accent-color: var(--thm-green);
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: var(--thm-dark);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0 15px;
+        }
+
+        .btn-submit {
+            background-color: var(--thm-green);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        .btn-submit:hover {
+            background-color: #6da61e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(128, 186, 36, 0.2);
+        }
+
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        .product-section {
+            display: none;
+        }
+        .product-section.active {
+            display: block;
+        }
+
+        .text-product-section {
+            display: none;
+        }
+        .text-product-section.active {
+            display: block;
+        }
+
+        .section-header {
+            background-color: var(--thm-green);
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .text-content {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: #4a5568;
+            text-align: justify;
+            margin: 0;
+            padding: 0 10px;
+        }
+
+        .description-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .text-section {
+            margin-bottom: 40px;
+        }
+
+        /* صفحة النهاية */
+        #completion-page.page-section.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="welcome-page" class="page-section active welcome-page">
+    <div class="welcome-card">
+        <div class="text-center">
+            <div class="header-logo">
+                <i class="bi bi-cpu"></i> THM User Study
+            </div>
+            <h1>Willkommen</h1>
+            <p class="lead text-muted">
+                Evaluation von Darstellungsformen
+            </p>
+        </div>
+
+        <div class="alert alert-light border mt-4 mb-4" role="alert" style="border-left: 4px solid var(--thm-green) !important;">
+            <div class="d-flex">
+                <div class="me-3">
+                    <i class="bi bi-info-circle-fill text-success fs-4" style="color: var(--thm-green) !important;"></i>
+                </div>
+                <div>
+                    <h6 class="alert-heading fw-bold mb-1">Über diese Studie</h6>
+                    <p class="mb-0 text-secondary small">
+                        Wir untersuchen, wie effizient Informationen entnommen werden können.
+                        Dauer: ca. <strong>10-15 Minuten</strong>. Bitte nutzen Sie einen PC oder Laptop.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <form id="startForm">
+            <h4 class="section-title">1. Demografische Angaben</h4>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="age" class="form-label fw-bold small">Alter</label>
+                    <input type="number" class="form-control" id="age" placeholder="Jahre" required min="16" max="99">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="gender" class="form-label fw-bold small">Geschlecht</label>
+                    <select class="form-select" id="gender" required>
+                        <option value="" selected disabled>Bitte wählen...</option>
+                        <option value="Weiblich">Weiblich</option>
+                        <option value="Männlich">Männlich</option>
+                        <option value="Divers">Divers</option>
+                        <option value="Keine Angabe">Keine Angabe</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="tech_exp" class="form-label fw-bold small">Technisches Vorwissen</label>
+                <select class="form-select" id="tech_exp" required>
+                    <option value="" selected disabled>Wie schätzen Sie sich ein?</option>
+                    <option value="Niedrig">Niedrig (Nutze Technik selten)</option>
+                    <option value="Mittel">Mittel (Nutze Technik regelmäßig)</option>
+                    <option value="Hoch">Hoch (Experte / Technikaffin)</option>
+                </select>
+            </div>
+
+            <h4 class="section-title">2. Einverständnis</h4>
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="consent" required style="cursor: pointer;">
+                <label class="form-check-label text-muted small" for="consent" style="cursor: pointer;">
+                    Ich bestätige, dass ich <strong>freiwillig</strong> teilnehme. Meine Daten werden <strong>anonym</strong> gespeichert und nur für wissenschaftliche Zwecke im Rahmen des Kurses "Evaluation Interaktiver Systeme" verwendet. Ich kann jederzeit abbrechen.
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-start shadow-sm">
+                Studie starten <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 THM - Evaluation Interaktiver Systeme.<br>Prof. Dr. Martin Weigel</p>
+    </footer>
+</div>
+
+<!-- ========= TEXT PRODUCTS (Phase: Text) ========= -->
+<div id="text-products-page" class="page-section">
+    <div class="container">
+        <div class="text-product-section active" id="text-product-1">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 2: Textbeschreibungen</span>
+                <span class="text-muted small fw-bold">Produkt 1 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 20%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1200&q=80" alt="Audi A5">
+                    <div class="product-overlay">
+                        <span class="price-tag">32.500 €</span>
+                        <h1 class="mb-1 fw-bold">Audi A5 Cabriolet 40 TFSI</h1>
+                        <p class="mb-0 opacity-75">S line | 75.000 km | Benzin | S tronic</p>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="textTaskForm" data-product="1">
+                        <div class="question-box">
+                            <h5 class="mb-4 fw-bold text-dark">Bitte beantworten Sie:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Welches Scheinwerfer-System ist verbaut?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_1" value="Xenon" id="text_p1_opt1">
+                                        <label class="form-check-label" for="text_p1_opt1">Xenon Plus</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_1" value="Matrix" id="text_p1_opt2">
+                                        <label class="form-check-label" for="text_p1_opt2">Matrix LED</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_1" value="Laser" id="text_p1_opt3">
+                                        <label class="form-check-label" for="text_p1_opt3">Audi Laserlicht</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Wie hoch ist die KFZ-Steuer? (Nur Zahl)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q_text_1_2" placeholder="z.B. 98" required>
+                                        <span class="input-group-text">€</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-container">
+                            <h4 class="mb-4 fw-bold text-muted">Fahrzeugbeschreibung</h4>
+                            <div class="text-section">
+                                <span class="section-header">Basisdaten & Zustand</span>
+                                <p class="text-content">
+                                    Dieses Audi A5 Cabriolet aus der Baureihe F5 wird unter der Fahrzeugnummer AUD-A5-772 geführt. Der Verkaufspreis beträgt 32.500 €. Das Fahrzeug stammt aus deutscher Ausführung und hatte seine Erstzulassung im Juni 2018 (06/2018). Der aktuelle Kilometerstand beträgt 75.000 km. Das Fahrzeug hatte bisher 2 Fahrzeughalter und ist in einem gepflegten Zustand (Gebrauchtfahrzeug, Scheckheftgepflegt). Die nächste Hauptuntersuchung (HU) ist neu.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Motor & Leistung</span>
+                                <p class="text-content">
+                                    Angetrieben wird das Cabriolet von einem 2.0 Liter TFSI Benzinmotor mit 4 Zylindern. Die Leistung liegt bei 140 kW (190 PS) aus einem Hubraum von 1.984 cm³. Die Kraftübertragung erfolgt über das automatische S tronic Getriebe an die Vorderräder. Das Fahrzeug erfüllt die Abgasnorm Euro 6d-TEMP (Grüne Plakette). Der kombinierte Kraftstoffverbrauch wird mit 6,2 l/100km angegeben (141 g/km CO₂). Die jährliche Kraftfahrzeugsteuer beläuft sich auf 98 €.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Maße & Gewichte</span>
+                                <p class="text-content">
+                                    Das Leergewicht des Fahrzeugs beträgt 1.700 kg. Für den Transport größerer Lasten ist eine Anhängerkupplung vorhanden; die gebremste Anhängelast beträgt 1.700 kg, während die ungebremste Anhängelast bei 750 kg liegt. Der Tank fasst 54 Liter. Das Fahrzeug ist als 2-türiges Cabriolet konzipiert und bietet im Innenraum Platz für 4 Personen.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Ausstattung & Technik</span>
+                                <p class="text-content">
+                                    Das Fahrzeug ist in "Mythosschwarz Metallic" lackiert (S line Sportpaket). Im Innenraum finden sich Sportsitze (Alcantara/Leder, Frequenz-Rotorgrau). Für Sicht sorgen Matrix LED-Scheinwerfer mit dynamischem Blinklicht. Zur Ausstattung gehören das Audi virtual cockpit, MMI Navigation plus, 3-Zonen-Klimaautomatik, Sitzheizung und Nackenheizung. Assistenzsysteme: ACC, Spurhalteassistent und Einparkhilfe plus. Das Akustikverdeck ist schwarz.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Weiter zu Produkt 2 <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-product-section" id="text-product-2">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 2: Textbeschreibungen</span>
+                <span class="text-muted small fw-bold">Produkt 2 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 40%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1506947411487-a56738267384?q=80&w=1000&auto=format&fit=crop" alt="Autel Evo Lite+">
+                    <div class="product-overlay">
+                        <span class="price-tag">1.449,00 €</span>
+                        <span class="fs-4 fw-bold">Autel Evo Lite+</span>
+                        <div class="small opacity-75 mt-1">Premium Bundle | 6K Video | 40 Min Flugzeit</div>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="textTaskForm" data-product="2">
+                        <div class="question-box">
+                            <h5 class="mb-4 fw-bold text-dark">Fragen zum Produkt:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Welchen Blendenbereich (Aperture) hat die Kamera?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_2" value="f1.7" id="text_p2_opt1">
+                                        <label class="form-check-label" for="text_p2_opt1">f/1.7 fix</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_2" value="f2.8-f11" id="text_p2_opt2">
+                                        <label class="form-check-label" for="text_p2_opt2">f/2.8 - f/11 verstellbar</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_2" value="f2.0-f8" id="text_p2_opt3">
+                                        <label class="form-check-label" for="text_p2_opt3">f/2.0 - f/8 variabel</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Wie hoch ist die Akkukapazität exakt? (Nur Zahl)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q_text_2_2" placeholder="z.B. 5000" required>
+                                        <span class="input-group-text">mAh</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-container">
+                            <h4 class="mb-4 fw-bold text-muted">Produktbeschreibung</h4>
+                            <div class="text-section">
+                                <span class="section-header">Flugleistung & Design</span>
+                                <p class="text-content">
+                                    Die Autel Evo Lite+ Drohne im Premium Bundle zeichnet sich durch ihre lange Ausdauer aus. Sie bietet eine Flugzeit von bis zu 40 Minuten unter optimalen Bedingungen, was durch das aerodynamische Design und das Startgewicht von 835 g ermöglicht wird. Die Drohne verfügt über Hindernissensoren vorne, hinten und unten, um Kollisionen zu vermeiden. Die maximale Fluggeschwindigkeit im Ludicrous-Modus beträgt 18 m/s.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Kamera & Optik</span>
+                                <p class="text-content">
+                                    Das Herzstück ist die Kamera mit einem großen 1-Zoll-CMOS-Sensor, der 20 Megapixel Fotos aufnehmen kann. Für Videografen bietet die Drohne 6K-Videoaufnahmen bei 30 fps oder 4K bei 60 fps. Eine Besonderheit ist die verstellbare Blende von f/2.8 bis f/11, die eine präzise Kontrolle über die Belichtung und Tiefenschärfe ermöglicht. Der ISO-Bereich reicht im Nachtmodus bis zu 64000.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Übertragung & Akku</span>
+                                <p class="text-content">
+                                    Die Bildübertragung erfolgt über das Autel SkyLink System, das eine Reichweite von bis zu 12 km bei einer Qualität von 2.7K/30fps bietet. Die Fernsteuerung verfügt über ein integriertes Display für Telemetriedaten. Der mitgelieferte Flugakku ist ein LiPo 3S mit einer Kapazität von 6175 mAh und einer Energie von 68,7 Wh. Die Ladezeit beträgt ca. 90 Minuten.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Weiter zu Produkt 3 <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-product-section" id="text-product-3">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 2: Textbeschreibungen</span>
+                <span class="text-muted small fw-bold">Produkt 3 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 60%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f78536788c6?q=80&w=1200&auto=format&fit=crop" alt="Dell XPS 15">
+                    <div class="product-overlay">
+                        <span class="price-tag">2.149,00 €</span>
+                        <span class="fs-4 fw-bold">Dell XPS 15 (9530)</span>
+                        <div class="small opacity-75 mt-1">OLED 3.5K | i7-13700H | RTX 4050</div>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="textTaskForm" data-product="3">
+                        <div class="question-box">
+                            <h5 class="mb-4 fw-bold text-dark">Fragen zum Produkt:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Wie viel Arbeitsspeicher (RAM) ist verbaut?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_3" value="16GB" id="text_p3_opt1">
+                                        <label class="form-check-label" for="text_p3_opt1">16 GB</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_3" value="32GB" id="text_p3_opt2">
+                                        <label class="form-check-label" for="text_p3_opt2">32 GB</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_3" value="64GB" id="text_p3_opt3">
+                                        <label class="form-check-label" for="text_p3_opt3">64 GB</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Wie schwer ist der Laptop? (Nur Zahl)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q_text_3_2" placeholder="z.B. 1.92" required>
+                                        <span class="input-group-text">kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-container">
+                            <h4 class="mb-4 fw-bold text-muted">Produktbeschreibung</h4>
+                            <div class="text-section">
+                                <span class="section-header">Leistung & Hardware</span>
+                                <p class="text-content">
+                                    Das Dell XPS 15 (Modell 9530) ist ein Hochleistungs-Laptop für Kreative. Im Inneren arbeitet ein Intel Core i7-13700H Prozessor der 13. Generation mit 14 Kernen und einem Turbotakt von bis zu 5,0 GHz. Für grafisch anspruchsvolle Aufgaben ist eine NVIDIA GeForce RTX 4050 Grafikkarte mit 6 GB GDDR6-Speicher verbaut. Das System wird durch 32 GB DDR5 Arbeitsspeicher (Dual-Channel mit 4800 MHz) unterstützt, der bei Bedarf auf bis zu 64 GB erweitert werden kann. Als Massenspeicher dient eine schnelle 1 TB M.2 PCIe NVMe SSD.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Display & Gehäuse</span>
+                                <p class="text-content">
+                                    Das Herzstück ist das 15,6 Zoll große OLED-Touch-Display mit einer 3.5K-Auflösung (3456 x 2160 Pixel). Es bietet eine Helligkeit von 400 Nits und deckt den DCI-P3 Farbraum zu 100% ab. Das Gehäuse ist aus CNC-gefrästem Aluminium in Platin-Silber gefertigt, während die Handauflagen aus schwarzer Carbonfaser besteht. Trotz der robusten Bauweise wiegt das Gerät in dieser Konfiguration 1,92 kg. Die Abmessungen betragen 18 mm in der Höhe und 344 mm in der Breite.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Anschlüsse & Akku</span>
+                                <p class="text-content">
+                                    Das XPS 15 verzichtet auf klassische USB-A Anschlüsse und setzt voll auf moderne Schnittstellen: Es bietet zwei Thunderbolt 4 Anschlüsse (USB-C) mit DisplayPort und Power Delivery sowie einen USB 3.2 Gen 2 Type-C Anschluss. Zusätzlich sind ein SD-Kartenleser im Vollformat und eine 3,5 mm Kopfhörer-Mikrofon-Kombinbuchse integriert. Der fest verbaute Akku hat eine Kapazität von 86 Wh und ermöglicht eine Laufzeit von bis zu 10 Stunden beim Streaming. Ein USB-C auf USB-A/HDMI Adapter liegt dem Lieferumfang bei.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Weiter zu Produkt 4 <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-product-section" id="text-product-4">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 2: Textbeschreibungen</span>
+                <span class="text-muted small fw-bold">Produkt 4 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 80%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1622979135225-d2ba269fb1bd?q=80&w=1000&auto=format&fit=crop" alt="Pico 4 Ultra">
+                    <div class="product-overlay">
+                        <span class="price-tag">599,00 €</span>
+                        <span class="fs-4 fw-bold">Pico 4 Ultra</span>
+                        <div class="small opacity-75 mt-1">Enterprise Edition | 256 GB</div>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="textTaskForm" data-product="4">
+                        <div class="question-box">
+                            <h5 class="mb-4 fw-bold text-dark">Fragen zum Produkt:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Wie groß ist der Arbeitsspeicher (RAM)?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_4" value="8GB" id="text_p4_opt1">
+                                        <label class="form-check-label" for="text_p4_opt1">8 GB</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_4" value="12GB" id="text_p4_opt2">
+                                        <label class="form-check-label" for="text_p4_opt2">12 GB</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_4" value="16GB" id="text_p4_opt3">
+                                        <label class="form-check-label" for="text_p4_opt3">16 GB</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Welche Kapazität hat der Akku? (Nur Zahl)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q_text_4_2" placeholder="z.B. 5700" required>
+                                        <span class="input-group-text">mAh</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-container">
+                            <h4 class="mb-4 fw-bold text-muted">Produktbeschreibung</h4>
+                            <div class="text-section">
+                                <span class="section-header">Allgemein & Hardware</span>
+                                <p class="text-content">
+                                    Das Pico 4 Ultra ist ein fortschrittliches All-in-One VR-Headset, das für Mixed-Reality-Erlebnisse entwickelt wurde. Es ist in der Farbe Weiß erhältlich und bietet einen internen Speicher von 256 GB. Im Lieferumfang sind Headset, 2 Controller und Netzteil enthalten. Der Preis liegt bei 599,00 €. Angetrieben wird es vom Snapdragon XR2 Gen 2 Prozessor für hohe Grafikleistung. Um Multitasking flüssig darzustellen, ist das Gerät mit 12 GB Arbeitsspeicher (RAM) ausgestattet. Das Tracking nutzt 4 Slam-Kameras und einen Tiefensensor.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Display & Optik</span>
+                                <p class="text-content">
+                                    Das visuelle Erlebnis wird durch zwei 2,56-Zoll Fast-LCD Bildschirme ermöglicht. Die Auflösung beträgt 2160 x 2160 Pixel pro Auge (4320 x 2160 gesamt) bei 1200 PPI. Dank Pancake-Linsen bietet es ein Sichtfeld von 105 Grad. Die Bildwiederholrate liegt bei 90 Hz. Der Pupillenabstand (IPD) ist motorisch verstellbar (58–72 mm).
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Konnektivität & Akku</span>
+                                <p class="text-content">
+                                    Für schnelle Verbindungen unterstützt es Wi-Fi 7 und Bluetooth 5.3. Der Akku ist im Kopfband integriert (für Balance) und hat eine Kapazität von 5700 mAh bei 45W Schnellladen. Das Gesamtgewicht beträgt 580 g. Das Betriebssystem ist PICO OS.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Weiter zu Produkt 5 <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-product-section" id="text-product-5">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 2: Textbeschreibungen</span>
+                <span class="text-muted small fw-bold">Produkt 5 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop" alt="Sony Alpha 7 IV">
+                    <div class="product-overlay">
+                        <span class="price-tag">2.499,00 €</span>
+                        <span class="fs-4 fw-bold">Sony Alpha 7 IV</span>
+                        <div class="small opacity-75 mt-1">Vollformat | 33 MP | 4K 60p</div>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="textTaskForm" data-product="5">
+                        <div class="question-box">
+                            <h5 class="mb-4 fw-bold text-dark">Fragen zum Produkt:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Welcher Bildsensor-Typ ist verbaut?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_5" value="ExmorRS" id="text_p5_opt1">
+                                        <label class="form-check-label" for="text_p5_opt1">Exmor RS (Stacked)</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_5" value="ExmorR" id="text_p5_opt2">
+                                        <label class="form-check-label" for="text_p5_opt2">Exmor R CMOS</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_text_5" value="LiveMOS" id="text_p5_opt3">
+                                        <label class="form-check-label" for="text_p5_opt3">Live MOS Sensor</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Wie hoch ist die Auflösung des elektronischen Suchers? (Zahl in Mio.)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q_text_5_2" placeholder="z.B. 2,36" required>
+                                        <span class="input-group-text">Millionen</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description-container">
+                            <h4 class="mb-4 fw-bold text-muted">Produktbeschreibung</h4>
+                            <div class="text-section">
+                                <span class="section-header">Bildsensor & Prozessor</span>
+                                <p class="text-content">
+                                    Die Sony Alpha 7 IV ist eine hybride Vollformatkamera, die für professionelle Foto- und Videoaufnahmen entwickelt wurde. Im Inneren arbeitet ein neu entwickelter rückwärtig belichteter Exmor R CMOS-Bildsensor mit einer Auflösung von 33 Megapixeln. Dieser wird durch den leistungsstarken BIONZ XR Bildprozessor unterstützt, der eine bis zu 8-mal schnellere Verarbeitungsgeschwindigkeit als der Vorgänger bietet. Der ISO-Empfindlichkeitsbereich reicht standardmäßig von ISO 100 bis 51200 und ist für Fotos auf ISO 50 bis 204800 erweiterbar.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Autofokus & Geschwindigkeit</span>
+                                <p class="text-content">
+                                    Das Autofokussystem der Alpha 7 IV setzt neue Maßstäbe in ihrer Klasse. Es nutzt ein Hybrid-AF-System mit 759 Phasendetektionspunkten, die etwa 94% des Bildbereichs abdecken. Das Echtzeit-Tracking und der Augen-AF funktionieren nun nicht nur bei Menschen, sondern auch zuverlässig bei Tieren und Vögeln, sowohl im Foto- als auch im Videomodus. Die Kamera ermöglicht Serienaufnahmen mit bis zu 10 Bildern pro Sekunde bei vollem AF/AE-Tracking und verfügt über einen großen Pufferspeicher für über 800 Bilder.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Videofunktionen</span>
+                                <p class="text-content">
+                                    Im Videobereich bietet die Kamera 4K-Aufnahmen mit bis zu 60 Bildern pro Sekunde im Super-35-mm-Modus und 4K 30p mit 7K-Oversampling im Vollformatmodus. Sie unterstützt 10-Bit 4:2:2-Farbsampling intern sowie die Bildprofile S-Cinetone und S-Log3 für einen Dynamikumfang von über 15 Stufen. Eine effektive Wärmeableitung ermöglicht kontinuierliche 4K 60p 10-Bit 4:2:2-Aufnahmen für mehr als eine Stunde. Zusätzlich wird die Focus-Breathing-Kompensation mit kompatiblen Sony-Objektiven unterstützt.
+                                </p>
+                            </div>
+                            <div class="text-section">
+                                <span class="section-header">Gehäuse & Bedienung</span>
+                                <p class="text-content">
+                                    Das Gehäuse aus einer Magnesiumlegierung ist robust und wiegt inklusive Akku und Speicherkarte ca. 658 g. Zur Bildkontrolle dient ein schwenk- und drehbarer LCD-Touchscreen mit 1,03 Millionen Bildpunkten. Der elektronische Quad-VGA OLED-Sucher bietet eine Auflösung von 3,68 Millionen Bildpunkten und eine Bildwiederholrate von bis zu 120 fps. Die Kamera verfügt über zwei Kartensteckplätze, die sowohl SDXC UHS-II als auch CFexpress Typ A Karten unterstützen. Der Z-Serie Akku (NP-FZ100) ermöglicht ca. 580 Aufnahmen pro Ladung.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Zur Bewertung <i class="bi bi-star-fill ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========= TABLE PRODUCTS (Phase: Table) ========= -->
+<div id="products-page" class="page-section">
+    <div class="container">
+
+        <div class="product-section active" id="product-1">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 1: Tabellen</span>
+                <span class="text-muted small fw-bold">Produkt 1 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 20%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80" alt="Mercedes C Cabrio">
+                    <div class="product-overlay">
+                        <span class="price-tag">25.000 €</span>
+                        <h1 class="mb-1 fw-bold">Mercedes-Benz C 200 Cabriolet</h1>
+                        <p class="mb-0 opacity-75">AMG Line | 90.000 km | Benzin | Automatik</p>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="taskForm" data-product="1">
+                        <div class="question-box">
+                            <h5 class="mb-3 fw-bold text-dark"><i class="bi bi-question-circle-fill me-2 text-success" style="color: var(--thm-green)!important;"></i>Fragen zum Fahrzeug:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Welche Art von Scheinwerfern hat das Fahrzeug?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_1" value="LED" id="p1_opt1">
+                                        <label class="form-check-label" for="p1_opt1">LED-Scheinwerfer (Intelligent Light System)</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_1" value="Bi-Xenon" id="p1_opt2">
+                                        <label class="form-check-label" for="p1_opt2">Bi-Xenon Scheinwerfer</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1_1" value="Halogen" id="p1_opt3">
+                                        <label class="form-check-label" for="p1_opt3">Halogen Scheinwerfer</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Wie hoch ist die gebremste Anhängelast? (Bitte nur die Zahl eingeben)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q1_2" placeholder="z.B. 1600" required>
+                                        <span class="input-group-text">kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mb-3 text-muted">Technische Daten & Ausstattung</h5>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <tr><td colspan="2" class="section-header">Basisdaten & Preis</td></tr>
+                                <tr><th>Preis</th><td class="fw-bold text-success" style="color: var(--thm-green)!important;">25.000 €</td></tr>
+                                <tr><th>Fahrzeugnummer</th><td>117n</td></tr>
+                                <tr><th>Kategorie</th><td>Cabrio / Roadster</td></tr>
+                                <tr><th>Erstzulassung</th><td>04/2017</td></tr>
+                                <tr><th>Kilometerstand</th><td>90.000 km</td></tr>
+                                <tr><th>Herkunft</th><td>Deutsche Ausführung</td></tr>
+                                <tr><th>Zustand</th><td>Gebrauchtfahrzeug, Scheckheftgepflegt</td></tr>
+                                <tr><th>HU</th><td>Neu</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Motor & Umwelt</td></tr>
+                                <tr><th>Leistung</th><td>135 kW (184 PS)</td></tr>
+                                <tr><th>Hubraum</th><td>1.991 cm³</td></tr>
+                                <tr><th>Motor</th><td>2,0 Ltr. - 135 kW CGI KAT (4 Zylinder)</td></tr>
+                                <tr><th>Getriebe</th><td>Automatik</td></tr>
+                                <tr><th>Antriebsart</th><td>Heckantrieb</td></tr>
+                                <tr><th>Kraftstoffart</th><td>Benzin</td></tr>
+                                <tr><th>Verbrauch (komb.)</th><td>6,0 l/100km</td></tr>
+                                <tr><th>CO₂-Emissionen</th><td>136 g/km</td></tr>
+                                <tr><th>Schadstoffklasse</th><td>Euro 6 (Grüne Plakette)</td></tr>
+                                <tr><th>Tankgröße</th><td>50 l (vergrößert)</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Maße & Gewichte</td></tr>
+                                <tr><th>Gewicht</th><td>1.645 kg</td></tr>
+                                <tr><th>Anhängelast (gebremst)</th><td>1.600 kg</td></tr>
+                                <tr><th>Anhängelast (ungebremst)</th><td>750 kg</td></tr>
+                                <tr><th>Sitzplätze / Türen</th><td>4 Sitze / 2-3 Türen</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Ausstattung & Technik</td></tr>
+                                <tr><th>Farbe & Design</th><td>SELENITGRAU (Grau Metallic), AMG-Line, Leichtmetallfelgen, Sportpaket, Sportfahrwerk</td></tr>
+                                <tr><th>Innenraum</th><td>Alcantara Schwarz, Armaturentafel in Ledernachbildung Artico, Ambiente-Beleuchtung, Lederlenkrad, Schaltwippen</td></tr>
+                                <tr><th>Komfort</th><td>Klimaautomatik (Thermatic 2-Zonen), Sitzheizung vorn, Sitz-Komfort-Paket, Lordosenstütze, Elektr. Fensterheber, Elektr. Seitenspiegel, Zentralverriegelung, Start/Stopp-Automatik</td></tr>
+                                <tr><th>Cabrio-Spezifisch</th><td>Akustik-Verdeck schwarz, Aircap, Kopfraumheizung (Airscarf)</td></tr>
+                                <tr><th>Licht & Sicht</th><td>LED-Scheinwerfer (Intelligent Light System), LED-Tagfahrlicht, LED-Heckleuchten, Fernlichtassistent (Adaptive plus), Lichtsensor, Regensensor, Innenspiegel autom. abblendend</td></tr>
+                                <tr><th>Assistenzsysteme</th><td>Aktiver Park-Assistent, Einparkhilfe (Vorne/Hinten), Collision Prevention Assist, Müdigkeitswarner, Tempomat, Berganfahrassistent, Reifendruckkontrolle, Notrufsystem</td></tr>
+                                <tr><th>Multimedia</th><td>Navigationssystem (Vorbereitung Garmin MAP Pilot), Audio 20 mit Farbdisplay, Bluetooth, Bordcomputer, CD-Spieler, USB, Freisprecheinrichtung, Touchpad</td></tr>
+                                <tr><th>Sicherheit</th><td>ABS, ESP, Traktionskontrolle, Isofix, Pannenkit, Wegfahrsperre, Airbags (Front, Seite, Kopf, Knie), Aktive Motorhaube</td></tr>
+                            </table>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Weiter zu Produkt 2 <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section" id="product-2">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 1: Tabellen</span>
+                <span class="text-muted small fw-bold">Produkt 2 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 40%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1622979135225-d2ba269fb1bd?q=80&w=1200&auto=format&fit=crop" alt="Meta Quest 3 VR Headset">
+                    <div class="product-overlay">
+                        <span class="price-tag">699,00 €</span>
+                        <h1 class="mb-1 fw-bold">Meta Quest 3</h1>
+                        <p class="mb-0 opacity-90">512GB Speicher | Mixed Reality Headset | Weiß</p>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="taskForm" data-product="2">
+                        <div class="question-box">
+                            <h5 class="mb-3 fw-bold text-dark"><i class="bi bi-question-circle-fill me-2 text-success" style="color: var(--thm-green)!important;"></i>Fragen zum Produkt:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Wie groß ist der Arbeitsspeicher (RAM)?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q2_1" value="8GB" id="p2_opt1">
+                                        <label class="form-check-label" for="p2_opt1">8 GB</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q2_1" value="6GB" id="p2_opt2">
+                                        <label class="form-check-label" for="p2_opt2">6 GB</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q2_1" value="12GB" id="p2_opt3">
+                                        <label class="form-check-label" for="p2_opt3">12 GB</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Wie hoch ist die Auflösung pro Auge? (Nur die erste Zahl, z.B. 2064)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q2_2" placeholder="Pixel" required>
+                                        <span class="input-group-text">px</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mb-3 text-muted">Technische Spezifikationen</h5>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <tr><td colspan="2" class="section-header">Allgemeine Informationen</td></tr>
+                                <tr><th>Modellbezeichnung</th><td>Meta Quest 3 (512GB Version)</td></tr>
+                                <tr><th>Produkttyp</th><td>All-In-One VR/MR Headset (Standalone)</td></tr>
+                                <tr><th>Speicherkapazität</th><td>512 GB (Nicht erweiterbar)</td></tr>
+                                <tr><th>Farbe</th><td>Weiß / Schwarz</td></tr>
+                                <tr><th>Verfügbarkeit</th><td>Sofort lieferbar</td></tr>
+                                <tr><th>Lieferumfang</th><td>Headset, 2x Touch Plus Controller, 18W Netzteil, USB-C Ladekabel, 2x AA-Batterien</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Leistung & Hardware</td></tr>
+                                <tr><th>Prozessor (SoC)</th><td>Snapdragon XR2 Gen 2 (4nm Technologie)</td></tr>
+                                <tr><th>Grafikleistung</th><td>2,5x höhere GPU-Leistung als Quest 2</td></tr>
+                                <tr><th>Arbeitsspeicher (RAM)</th><td>8 GB LPDDR5</td></tr>
+                                <tr><th>Tracking-Technologie</th><td>6 DoF (Inside-Out), SLAM, Hand-Tracking 2.0</td></tr>
+                                <tr><th>Sensoren</th><td>4 IR-Kameras, 2 RGB-Kameras (18 PPD Passthrough), Tiefensensor</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Display & Optik</td></tr>
+                                <tr><th>Display-Technologie</th><td>4K+ Infinite Display (2x LCD mit Local Dimming)</td></tr>
+                                <tr><th>Auflösung pro Auge</th><td>2064 x 2208 Pixel</td></tr>
+                                <tr><th>Pixeldichte (PPI)</th><td>1218 PPI</td></tr>
+                                <tr><th>Bildwiederholrate</th><td>90 Hz (Standard), bis zu 120 Hz (Experimentell)</td></tr>
+                                <tr><th>Sichtfeld (FOV)</th><td>110° horizontal, 96° vertikal</td></tr>
+                                <tr><th>Linsentyp</th><td>Pancake-Linsen (40% dünneres optisches Profil)</td></tr>
+                                <tr><th>IPD (Augenabstand)</th><td>Stufenlos verstellbar (58 mm – 71 mm)</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Konnektivität & Energie</td></tr>
+                                <tr><th>WLAN-Standard</th><td>Wi-Fi 6E (802.11ax)</td></tr>
+                                <tr><th>Bluetooth</th><td>Bluetooth 5.2 (für Tastaturen/Gamepads)</td></tr>
+                                <tr><th>Anschlüsse</th><td>1x USB-C 3.0, 1x 3.5mm Kopfhöreranschluss, Kontaktpins für Dock</td></tr>
+                                <tr><th>Akkulaufzeit (Gaming)</th><td>Ca. 2,4 Stunden</td></tr>
+                                <tr><th>Akkulaufzeit (Medien)</th><td>Ca. 2,9 Stunden</td></tr>
+                                <tr><th>Ladezeit (0-100%)</th><td>Ca. 2,3 Stunden (mit 18W Adapter)</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Maße & Gewicht</td></tr>
+                                <tr><th>Gewicht (Headset)</th><td>515 g (inkl. Standard-Strap)</td></tr>
+                                <tr><th>Abmessungen</th><td>184 mm (L) x 160 mm (B) x 98 mm (H)</td></tr>
+                                <tr><th>Gewicht (Controller)</th><td>126 g (pro Controller inkl. Batterie)</td></tr>
+                                <tr><th>Kompatibilität</th><td>PC-VR via Link/AirLink (SteamVR, Oculus App)</td></tr>
+                            </table>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Weiter zu Produkt 3 <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section" id="product-3">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 1: Tabellen</span>
+                <span class="text-muted small fw-bold">Produkt 3 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 60%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header" style="background-color: #000;">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop" alt="MacBook Pro 14 Zoll">
+                    <div class="product-overlay">
+                        <span class="price-tag">1.899,00 €</span>
+                        <h1 class="mb-1 fw-bold">Apple MacBook Pro 14" (M4)</h1>
+                        <p class="mb-0 opacity-90">Modelljahr 2024 | Space Schwarz | M4 Chip</p>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="taskForm" data-product="3">
+                        <div class="question-box">
+                            <h5 class="mb-3 fw-bold text-dark"><i class="bi bi-question-circle-fill me-2 text-success" style="color: var(--thm-green)!important;"></i>Fragen zum Produkt:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Welche maximale Helligkeit (HDR) bietet das Display?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q3_1" value="1600" id="p3_opt1">
+                                        <label class="form-check-label" for="p3_opt1">1600 Nits</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q3_1" value="600" id="p3_opt2">
+                                        <label class="form-check-label" for="p3_opt2">600 Nits</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q3_1" value="1000" id="p3_opt3">
+                                        <label class="form-check-label" for="p3_opt3">1000 Nits</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Wie schwer ist das Gerät exakt? (Bitte nur die Zahl eingeben)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q3_2" placeholder="z.B. 1,55" required>
+                                        <span class="input-group-text">kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mb-3 text-muted">Technische Daten & Konfiguration</h5>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <tr><td colspan="2" class="section-header">Chip & Performance</td></tr>
+                                <tr><th>Chip</th><td>Apple M4 Chip (System-on-Chip)</td></tr>
+                                <tr><th>CPU</th><td>10-Core CPU (4 Performance-Kerne, 6 Effizienz-Kerne)</td></tr>
+                                <tr><th>GPU</th><td>10-Core GPU mit Hardware-beschleunigtem Raytracing</td></tr>
+                                <tr><th>Neural Engine</th><td>16-Core Neural Engine (für Machine Learning)</td></tr>
+                                <tr><th>Speicherbandbreite</th><td>120 GB/s</td></tr>
+                                <tr><th>Media Engine</th><td>Hardware-Beschleunigung für H.264, HEVC, ProRes und ProRes RAW</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Arbeitsspeicher & Kapazität</td></tr>
+                                <tr><th>Arbeitsspeicher (RAM)</th><td>16 GB gemeinsamer Arbeitsspeicher (Unified Memory)</td></tr>
+                                <tr><th>Konfigurierbar auf</th><td>Bis zu 32 GB (optional)</td></tr>
+                                <tr><th>Festplatte</th><td>512 GB SSD (PCIe-basiert)</td></tr>
+                                <tr><th>Lesegeschwindigkeit</th><td>Bis zu 7.4 GB/s</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Liquid Retina XDR Display</td></tr>
+                                <tr><th>Displaygröße</th><td>14,2 Zoll (35,97 cm Diagonale)</td></tr>
+                                <tr><th>Auflösung</th><td>3024 x 1964 Pixel bei 254 ppi</td></tr>
+                                <tr><th>Technologie</th><td>Mini-LED Hintergrundbeleuchtung (10.000 Mini-LEDs)</td></tr>
+                                <tr><th>Helligkeit (SDR)</th><td>600 Nits (maximale Helligkeit)</td></tr>
+                                <tr><th>Helligkeit (XDR)</th><td>1000 Nits (durchgehend, Vollbild)</td></tr>
+                                <tr><th>Spitzenhelligkeit (HDR)</th><td>1600 Nits (nur bei HDR-Inhalten)</td></tr>
+                                <tr><th>Kontrastverhältnis</th><td>1.000.000:1</td></tr>
+                                <tr><th>Farbraum</th><td>Großer Farbraum (P3) und True Tone Technologie</td></tr>
+                                <tr><th>Bildwiederholrate</th><td>ProMotion Technologie für adaptive Raten bis 120 Hz</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Batterie & Stromversorgung</td></tr>
+                                <tr><th>Batterie</th><td>72,4 Wh Lithium-Polymer-Batterie</td></tr>
+                                <tr><th>Wiedergabe (Film)</th><td>Bis zu 22 Stunden (Apple TV App)</td></tr>
+                                <tr><th>Surfen (Web)</th><td>Bis zu 15 Stunden (Drahtloses Surfen)</td></tr>
+                                <tr><th>Netzteil</th><td>70W USB-C Power Adapter (im Lieferumfang)</td></tr>
+                                <tr><th>Schnellladen</th><td>Unterstützt (50% in 30 Minuten mit 96W Adapter)</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Konnektivität & Anschlüsse</td></tr>
+                                <tr><th>Thunderbolt</th><td>3x Thunderbolt 4 (USB-C) Anschlüsse</td></tr>
+                                <tr><th>Unterstützung für</th><td>Laden, DisplayPort, Thunderbolt 4 (bis 40 Gbit/s), USB 4</td></tr>
+                                <tr><th>HDMI</th><td>HDMI Anschluss (unterstützt Mehrkanal-Audioausgabe)</td></tr>
+                                <tr><th>Speicherkarten</th><td>SDXC Kartensteckplatz</td></tr>
+                                <tr><th>Laden</th><td>MagSafe 3 Anschluss</td></tr>
+                                <tr><th>Kopfhörer</th><td>3,5 mm Anschluss (fortschrittliche Unterstützung für Kopfhörer mit hoher Impedanz)</td></tr>
+                                <tr><th>WLAN</th><td>WLAN 6E (802.11ax)</td></tr>
+                                <tr><th>Bluetooth</th><td>Bluetooth 5.3</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Abmessungen & Gewicht</td></tr>
+                                <tr><th>Höhe</th><td>1,55 cm</td></tr>
+                                <tr><th>Breite</th><td>31,26 cm</td></tr>
+                                <tr><th>Tiefe</th><td>22,12 cm</td></tr>
+                                <tr><th>Gewicht</th><td>1,55 kg (Konfigurationsabhängig)</td></tr>
+                                <tr><th>Material</th><td>Gehäuse aus 100% recyceltem Aluminium</td></tr>
+                            </table>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Weiter zu Produkt 4 <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section" id="product-4">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 1: Tabellen</span>
+                <span class="text-muted small fw-bold">Produkt 4 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 80%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1579829366248-204fe8413f31?q=80&w=1200&auto=format&fit=crop" alt="DJI Mini 4 Pro">
+                    <div class="product-overlay">
+                        <span class="price-tag">1.129,00 €</span>
+                        <h1 class="mb-1 fw-bold">DJI Mini 4 Pro (Fly More Combo)</h1>
+                        <p class="mb-0 opacity-90">4K/60fps HDR | Omnidirektionale Hindernisvermeidung | < 249g</p>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="taskForm" data-product="4">
+                        <div class="question-box">
+                            <h5 class="mb-3 fw-bold text-dark"><i class="bi bi-question-circle-fill me-2 text-success" style="color: var(--thm-green)!important;"></i>Fragen zum Produkt:</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Welches Videoübertragungssystem wird verwendet?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q4_1" value="O4" id="p4_opt1">
+                                        <label class="form-check-label" for="p4_opt1">DJI O4</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q4_1" value="O3" id="p4_opt2">
+                                        <label class="form-check-label" for="p4_opt2">DJI O3</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q4_1" value="O3+" id="p4_opt3">
+                                        <label class="form-check-label" for="p4_opt3">DJI O3+</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Wie hoch ist die maximale Video-Bitrate? (Nur Zahl eingeben)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q4_2" placeholder="z.B. 150" required>
+                                        <span class="input-group-text">MBit/s</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mb-3 text-muted">Technische Spezifikationen</h5>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <tr><td colspan="2" class="section-header">Allgemeines & Gewicht</td></tr>
+                                <tr><th>Startgewicht</th><td>< 249 g (Führerscheinfrei in vielen Ländern)</td></tr>
+                                <tr><th>Abmessungen (Gefaltet)</th><td>148 × 94 × 64 mm</td></tr>
+                                <tr><th>Abmessungen (Ausgefaltet)</th><td>298 × 373 × 101 mm (mit Propellern)</td></tr>
+                                <tr><th>Max. Steiggeschwindigkeit</th><td>5 m/s (S-Modus)</td></tr>
+                                <tr><th>Max. Sinkgeschwindigkeit</th><td>5 m/s (S-Modus)</td></tr>
+                                <tr><th>Max. Fluggeschwindigkeit</th><td>16 m/s (S-Modus)</td></tr>
+                                <tr><th>Max. Windwiderstand</th><td>10,7 m/s (Windstärke 5)</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Kamera & Sensor</td></tr>
+                                <tr><th>Bildsensor</th><td>1/1,3-Zoll CMOS, effektive Pixel: 48 MP</td></tr>
+                                <tr><th>Objektiv</th><td>Sichtfeld: 82,1°, Blende: f/1.7, Format: 24 mm</td></tr>
+                                <tr><th>ISO-Bereich (Video)</th><td>100 - 6400 (Normal), 100 - 1600 (D-Log M)</td></tr>
+                                <tr><th>ISO-Bereich (Foto)</th><td>100 - 6400 (12 MP), 100 - 3200 (48 MP)</td></tr>
+                                <tr><th>Verschlusszeit</th><td>1/16000 bis 2 s (Elektronisch)</td></tr>
+                                <tr><th>Max. Bildgröße</th><td>8064 × 6048 (48 MP)</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Video & Formate</td></tr>
+                                <tr><th>Videoauflösung (H.264/H.265)</th><td>4K: 3840×2160 bei 24/25/30/48/50/60/100 fps</td></tr>
+                                <tr><th>FHD Auflösung</th><td>1920×1080 bei 24/25/30/48/50/60/100/200 fps</td></tr>
+                                <tr><th>HDR-Video</th><td>Unterstützt bis zu 4K/60fps</td></tr>
+                                <tr><th>Zeitlupe</th><td>4K bei 100fps, 1080p bei 200fps</td></tr>
+                                <tr><th>Max. Video-Bitrate</th><td>150 MBit/s</td></tr>
+                                <tr><th>Farbmodi</th><td>Normal (8-Bit), D-Log M (10-Bit), HLG (10-Bit)</td></tr>
+                                <tr><th>Dateisystem</th><td>exFAT</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Gimbal & Stabilisierung</td></tr>
+                                <tr><th>Stabilisierung</th><td>3-Achsen (Neigen, Rollen, Schwenken)</td></tr>
+                                <tr><th>Mechanischer Bereich</th><td>Neigen: -135° bis 80°, Rollen: -30° bis 30°</td></tr>
+                                <tr><th>Steuerbarer Bereich</th><td>Neigen: -90° bis 60°, Vertikale Aufnahmen (True Vertical Shooting)</td></tr>
+                                <tr><th>Max. Steuergeschwindigkeit</th><td>100°/s</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Erkennung & Sicherheit</td></tr>
+                                <tr><th>Erkennungssystem</th><td>Omnidirektionale duale Sichtsensoren (3D-Infrarotsensor unten)</td></tr>
+                                <tr><th>Vorne/Hinten/Links/Rechts</th><td>Präzisionsmessbereich: 0,5 bis 18 m</td></tr>
+                                <tr><th>Unten</th><td>Präzisionsmessbereich: 0,3 bis 12 m</td></tr>
+                                <tr><th>Assistenzsysteme</th><td>APAS 5.0 (Hindernisvermeidung), RTH (Return to Home)</td></tr>
+                                <tr><th>Intelligente Funktionen</th><td>ActiveTrack 360°, Spotlight 2.0, Point of Interest 3.0</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Übertragung & Akku</td></tr>
+                                <tr><th>Videoübertragungssystem</th><td>DJI O4</td></tr>
+                                <tr><th>Live-Ansicht Qualität</th><td>1080p/60fps</td></tr>
+                                <tr><th>Max. Reichweite (FCC)</th><td>20 km</td></tr>
+                                <tr><th>Max. Reichweite (CE/SRRC)</th><td>10 km</td></tr>
+                                <tr><th>Akku-Typ</th><td>Li-Ion (Intelligent Flight Battery)</td></tr>
+                                <tr><th>Kapazität / Energie</th><td>2590 mAh / 18,96 Wh</td></tr>
+                                <tr><th>Max. Flugzeit</th><td>34 Minuten (mit Standard-Akku)</td></tr>
+                                <tr><th>Ladezeit</th><td>70 Minuten (mit 30W Charger)</td></tr>
+                            </table>
+                        </div>
+
+                        <button type="submit" class="btn btn-next">
+                            Weiter zu Produkt 5 <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section" id="product-5">
+            <div class="d-flex justify-content-between mb-2 px-1">
+                <span class="text-muted small fw-bold">Phase 1: Tabellen</span>
+                <span class="text-muted small fw-bold">Produkt 5 von 5</span>
+            </div>
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <div class="main-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=1200&auto=format&fit=crop" alt="GoPro HERO13 Black">
+                    <div class="product-overlay">
+                        <span class="price-tag">449,99 €</span>
+                        <h1 class="mb-1 fw-bold">GoPro HERO13 Black</h1>
+                        <p class="mb-0 opacity-90">Action Cam | 5.3K Video | HyperSmooth 6.0 | GPS</p>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <form class="taskForm" data-product="5">
+                        <div class="question-box">
+                            <h5 class="mb-3 fw-bold text-dark"><i class="bi bi-question-circle-fill me-2 text-success" style="color: var(--thm-green)!important;"></i>Fragen zum Produkt:</h5>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">1. Wie hoch ist die maximale Bildrate (FPS) bei 4K-Auflösung?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q5_1" value="120" id="p5_opt1">
+                                        <label class="form-check-label" for="p5_opt1">120 fps</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q5_1" value="60" id="p5_opt2">
+                                        <label class="form-check-label" for="p5_opt2">60 fps</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q5_1" value="240" id="p5_opt3">
+                                        <label class="form-check-label" for="p5_opt3">240 fps</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">2. Welche Kapazität hat der Enduro-Akku? (Nur Zahl eingeben)</label>
+                                    <div class="input-group">
+                                        <input type="text" inputmode="decimal" class="form-control q5_2" placeholder="z.B. 1900" required>
+                                        <span class="input-group-text">mAh</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mb-3 text-muted">Technische Spezifikationen</h5>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <tr><td colspan="2" class="section-header">Video & Leistung</td></tr>
+                                <tr><th>Videoauflösung (Max)</th><td>5.3K (8:7) bis zu 60 fps</td></tr>
+                                <tr><th>Videoauflösung (4K)</th><td>4K (16:9) bis zu 120 fps</td></tr>
+                                <tr><th>Videoauflösung (2.7K)</th><td>2.7K (16:9) bis zu 240 fps</td></tr>
+                                <tr><th>Zeitlupe (Slo-Mo)</th><td>8x (bei 2.7K), 4x (bei 4K), 13x Burst (720p/400fps)</td></tr>
+                                <tr><th>Videostabilisierung</th><td>HyperSmooth 6.0 mit AutoBoost</td></tr>
+                                <tr><th>HDR</th><td>HLG-HDR (Hybrid Log Gamma) Video</td></tr>
+                                <tr><th>Seitenverhältnis</th><td>16:9, 9:16, 4:3, 8:7</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Foto & Objektiv</td></tr>
+                                <tr><th>Fotoauflösung</th><td>27 Megapixel</td></tr>
+                                <tr><th>Standbilder aus Video</th><td>24,7 MP (aus 5.3K Video)</td></tr>
+                                <tr><th>Objektiv-Kompatibilität</th><td>HB-Series Lenses (Macro, Ultra Wide, Anamorphic, ND-Filter)</td></tr>
+                                <tr><th>Digitale Objektive</th><td>HyperView, SuperView, Weit, Linear</td></tr>
+                                <tr><th>Foto-Modi</th><td>Standard, HDR, RAW, SuperFoto, Nachtfoto</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Display & Design</td></tr>
+                                <tr><th>Display hinten</th><td>2,27 Zoll Touchscreen (Zoom per Touch)</td></tr>
+                                <tr><th>Display vorne</th><td>1,4 Zoll Farb-Display (Live-Vorschau)</td></tr>
+                                <tr><th>Wasserdichtigkeit</th><td>Bis 10 m (ohne Schutzgehäuse)</td></tr>
+                                <tr><th>Montage</th><td>Integrierte Befestigungsösen + Neue Magnetverriegelung</td></tr>
+                                <tr><th>Mikrofone</th><td>3 Mikrofone mit Windgeräuschminderung</td></tr>
+                                <tr><th>Abmessungen</th><td>71,8 x 50,8 x 33,6 mm</td></tr>
+                                <tr><th>Gewicht</th><td>154 g (inkl. Akku)</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Batterie & Laufzeit</td></tr>
+                                <tr><th>Akku-Typ</th><td>Austauschbarer Enduro Akku (Lithium-Ionen)</td></tr>
+                                <tr><th>Kapazität</th><td>1900 mAh</td></tr>
+                                <tr><th>Laufzeit (5.3K30)</th><td>Bis zu 1,5 Stunden</td></tr>
+                                <tr><th>Laufzeit (1080p30)</th><td>Bis zu 2,5 Stunden</td></tr>
+                                <tr><th>Laden</th><td>USB-C, Schnellladefähig</td></tr>
+
+                                <tr><td colspan="2" class="section-header">Smart Features & Verbindung</td></tr>
+                                <tr><th>Prozessor</th><td>GP2 System-on-Chip</td></tr>
+                                <tr><th>Konnektivität</th><td>WLAN (Wi-Fi 6), Bluetooth 5.3</td></tr>
+                                <tr><th>Audio-Features</th><td>Unterstützung für Bluetooth-Audio (AirPods etc.)</td></tr>
+                                <tr><th>GPS</th><td>Integriert (GPS-Daten-Overlay möglich)</td></tr>
+                                <tr><th>Sprachsteuerung</th><td>14 Befehle in 11 Sprachen</td></tr>
+                                <tr><th>Livestreaming</th><td>1080p</td></tr>
+                                <tr><th>Webcam-Modus</th><td>Ja (via USB-C)</td></tr>
+                                <tr><th>Upload</th><td>Automatischer Cloud-Upload & Highlight-Video</td></tr>
+                            </table>
+                        </div>
+
+                        <button type="submit" class="btn btn-next" id="btn-to-sus">
+                            Zur Bewertung <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========= SUS PAGE ========= -->
+<div id="sus-page" class="page-section">
+    <div class="container">
+        <div class="sus-card">
+            <div class="text-center mb-5">
+                <span class="badge bg-secondary mb-2" id="phase-badge">Zwischenbewertung</span>
+                <h2 class="mb-2">Wie war Ihre Erfahrung?</h2>
+                <p class="text-muted">
+                    Bitte bewerten Sie die <strong>Darstellungsform (Tabelle/Text)</strong>, die Sie gerade genutzt haben.
+                </p>
+            </div>
+
+            <form id="susForm">
+                <div id="questions-container"></div>
+
+                <button type="submit" class="btn btn-submit mt-4">
+                    Bewertung absenden <i class="bi bi-check-circle-fill ms-2"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ========= PAUSE PAGE ========= -->
+<div id="pause-page" class="page-section">
+    <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: #f4f6f8; padding: 20px;">
+        <div style="background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); padding: 50px; width: 100%; max-width: 600px; text-align: center; border-top: 6px solid var(--thm-green);">
+            <div style="width: 90px; height: 90px; background-color: #f0f9eb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 30px;">
+                <i class="bi bi-cup-hot-fill" style="font-size: 2.5rem; color: var(--thm-green);"></i>
+            </div>
+
+            <h1 style="font-weight: 800; color: var(--thm-dark); margin-bottom: 20px; font-size: 1.8rem;">Teil 1 abgeschlossen!</h1>
+
+            <div style="font-size: 1.05rem; color: #666; margin-bottom: 30px; line-height: 1.6;">
+                <p>Vielen Dank! Sie haben den ersten Teil der Studie erfolgreich beendet.</p>
+                <p>Bevor wir mit dem zweiten Teil fortfahren, können Sie gerne eine <strong>kurze Pause</strong> einlegen.</p>
+            </div>
+
+            <span style="font-size: 0.8rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; text-align: left;">Fortschritt: 50%</span>
+            <div class="progress" style="height: 10px; margin-bottom: 30px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 50%; background-color: var(--thm-green);"></div>
+            </div>
+
+            <button onclick="startPartTwo()" style="background-color: var(--thm-green); color: white; padding: 12px 40px; border-radius: 8px; border: none; font-weight: 700; font-size: 1.1rem; transition: all 0.3s; width: 100%; margin-top: 30px;" class="btn-continue">
+                Weiter zu Teil 2 <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ========= COMPLETION PAGE ========= -->
+<div id="completion-page" class="page-section" style="min-height: 100vh; background-color: #f4f6f8; padding: 20px;">
+    <div style="background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); padding: 50px; width: 100%; max-width: 650px; text-align: center; border-top: 6px solid var(--thm-green); margin: 0 auto;">
+        <div style="width: 100px; height: 100px; background-color: #f0f9eb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 30px;">
+            <i class="bi bi-check-lg" style="font-size: 3rem; color: var(--thm-green);"></i>
+        </div>
+
+        <h1 style="font-weight: 800; color: var(--thm-dark); margin-bottom: 20px;">Vielen Dank!</h1>
+
+        <div style="font-size: 1.1rem; color: #666; margin-bottom: 40px; line-height: 1.6;">
+            <p>Sie haben die Studie erfolgreich abgeschlossen. Ihre Teilnahme hilft uns sehr bei unserer Forschung zur Informationsdarstellung.</p>
+        </div>
+
+        <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px; margin-bottom: 30px; text-align: left;">
+            <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--thm-dark); margin-bottom: 10px;"><i class="bi bi-file-earmark-text me-2"></i>Wichtig: Datensicherung</h5>
+            <p style="font-size: 0.9rem; margin-bottom: 5px; color: #555;">Bitte laden Sie Ihre Ergebnisse herunter und senden Sie die Datei an den Studienleiter.</p>
+            <p style="font-size: 0.85rem; margin-top: 8px; color: #999;">(Die Datei enthält keine persönlichen Namen, nur anonyme IDs)</p>
+        </div>
+
+        <button onclick="downloadData()" style="background-color: var(--thm-green); color: white; padding: 15px 30px; border-radius: 8px; border: none; font-weight: 700; font-size: 1.1rem; transition: all 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;">
+            <i class="bi bi-download"></i> Ergebnisse herunterladen (CSV)
+        </button>
+
+        <a href="index.html" style="display: block; margin-top: 20px; color: #999; text-decoration: none; font-size: 0.9rem;">Zur Startseite (Neuer Teilnehmer)</a>
+    </div>
+</div>
+
+<script>
+    let currentProduct = 1;
+    const startTimes = {};
+    let currentPhase = 'table'; // نبدأ بالـ Tabellen
+
+    // 1. تحذير لمنع إغلاق الصفحة بالخطأ وضياع البيانات
+    window.onbeforeunload = function() {
+        return "Daten gehen verloren. Sind Sie sicher?";
+    };
+
+    function initProductTimer(productId) {
+        startTimes[productId] = Date.now();
+    }
+
+    // 2. دالة مساعدة لتحليل الأرقام الألمانية (إزالة النقطة وتبديل الفاصلة)
+    function parseGermanNumber(input) {
+        if (!input) return 0;
+        let clean = input.toString().replace(/\./g, '').replace(',', '.');
+        return parseFloat(clean);
+    }
+
+    // معالجة نموذج البداية
+    document.getElementById('startForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // 3. تنظيف البيانات القديمة لضمان عدم التداخل
+        localStorage.clear();
+
+        const age = document.getElementById('age').value;
+        const gender = document.getElementById('gender').value;
+        const techExp = document.getElementById('tech_exp').value;
+
+        const participantID = 'P_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+        const group = Math.random() < 0.5 ? 'A' : 'B';
+
+        const participantData = {
+            id: participantID,
+            age: age,
+            gender: gender,
+            techExp: techExp,
+            group: group,
+            startTime: Date.now(),
+            currentTask: 'table', // نبدأ بالجدول
+            text_results: [],
+            table_results: []
+        };
+
+        // 4. استخدام localStorage للحفظ الآمن
+        localStorage.setItem('participantData', JSON.stringify(participantData));
+
+        document.getElementById('welcome-page').classList.remove('active');
+        document.getElementById('products-page').classList.add('active'); // نبدأ بالـ Tabellen
+        currentPhase = 'table';
+        initProductTimer(1);
+        window.scrollTo(0, 0);
+    });
+
+    // معالجة نماذج المنتجات النصية
+    document.querySelectorAll('.textTaskForm').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const productId = parseInt(this.getAttribute('data-product'));
+            const endTime = Date.now();
+            const timeTaken = endTime - (startTimes[productId] || endTime);
+
+            const q1Value = document.querySelector(`input[name="q1_text_${productId}"]:checked`)?.value;
+            const rawInput = document.querySelector(`.q_text_${productId}_2`).value.trim();
+
+            const correctAnswers = {
+                1: { q1: 'Matrix', q2: '98' },
+                2: { q1: 'f2.8-f11', q2: '6175' },
+                3: { q1: '32GB', q2: '1.92' },
+                4: { q1: '12GB', q2: '5700' },
+                5: { q1: 'ExmorR', q2: '3.68' }
+            };
+
+            let errors = 0;
+            if (q1Value !== correctAnswers[productId].q1) errors++;
+
+            // 5. استخدام دالة التحليل للمقارنة الدقيقة للأرقام
+            const userNum = parseGermanNumber(rawInput);
+            const correctNum = parseGermanNumber(correctAnswers[productId].q2);
+
+            // السماح بهامش خطأ صغير جدًا (0.01) أو التطابق النصي
+            if (isNaN(userNum) || (Math.abs(userNum - correctNum) > 0.01 && rawInput !== correctAnswers[productId].q2)) {
+                errors++;
+            }
+
+            let participantData = JSON.parse(localStorage.getItem('participantData'));
+            participantData.text_results.push({
+                product_id: productId,
+                time: timeTaken,
+                errors: errors
+            });
+
+            localStorage.setItem('participantData', JSON.stringify(participantData));
+
+            if (productId < 5) {
+                document.getElementById(`text-product-${productId}`).classList.remove('active');
+                document.getElementById(`text-product-${productId + 1}`).classList.add('active');
+                initProductTimer(productId + 1);
+                window.scrollTo(0, 0);
+            } else {
+                document.getElementById('text-products-page').classList.remove('active');
+                document.getElementById('sus-page').classList.add('active');
+                window.scrollTo(0, 0);
+                initSUS('text'); // SUS للـ Text في الآخر
+            }
+        });
+    });
+
+    // معالجة نماذج المنتجات الجدولية
+    document.querySelectorAll('.taskForm').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const productId = parseInt(this.getAttribute('data-product'));
+            const endTime = Date.now();
+            const timeTaken = endTime - (startTimes[productId] || endTime);
+
+            const q1Value = document.querySelector(`input[name="q${productId}_1"]:checked`)?.value;
+            const rawInput = document.querySelector(`.q${productId}_2`).value.trim();
+
+            const correctAnswers = {
+                1: { q1: 'LED', q2: '1600' },
+                2: { q1: '8GB', q2: '2064' },
+                3: { q1: '1600', q2: '1.55' },
+                4: { q1: 'O4', q2: '150' },
+                5: { q1: '120', q2: '1900' }
+            };
+
+            let errors = 0;
+            if (q1Value !== correctAnswers[productId].q1) errors++;
+
+            // 6. نفس منطق مقارنة الأرقام الآمن
+            const userNum = parseGermanNumber(rawInput);
+            const correctNum = parseGermanNumber(correctAnswers[productId].q2);
+
+            if (isNaN(userNum) || (Math.abs(userNum - correctNum) > 0.01 && rawInput !== correctAnswers[productId].q2)) {
+                errors++;
+            }
+
+            let participantData = JSON.parse(localStorage.getItem('participantData'));
+            participantData.table_results.push({
+                product_id: productId,
+                time: timeTaken,
+                errors: errors
+            });
+
+            localStorage.setItem('participantData', JSON.stringify(participantData));
+
+            if (productId < 5) {
+                document.getElementById(`product-${productId}`).classList.remove('active');
+                document.getElementById(`product-${productId + 1}`).classList.add('active');
+                initProductTimer(productId + 1);
+                window.scrollTo(0, 0);
+            } else {
+                document.getElementById('products-page').classList.remove('active');
+                document.getElementById('sus-page').classList.add('active');
+                window.scrollTo(0, 0);
+                initSUS('table'); // SUS للـ Tabellen الأول
+            }
+        });
+    });
+
+    // تهيئة أسئلة SUS
+    function initSUS(phase) {
+        if (phase) {
+            currentPhase = phase;
+        }
+
+        const phaseBadge = document.getElementById('phase-badge');
+        if (phaseBadge) {
+            if (currentPhase === 'text') {
+                phaseBadge.textContent = 'Bewertung: Textbeschreibung';
+            } else if (currentPhase === 'table') {
+                phaseBadge.textContent = 'Bewertung: Tabelle';
+            }
+        }
+
+        const container = document.getElementById('questions-container');
+        container.innerHTML = '';
+
+        const susQuestions = [
+            "Ich kann mir sehr gut vorstellen, das System regelmäßig zu nutzen.",
+            "Ich empfinde das System als unnötig komplex.",
+            "Ich empfinde das System als einfach zu nutzen.",
+            "Ich denke, dass ich technischen Support brauchen würde, um das System zu nutzen.",
+            "Ich finde, dass die verschiedenen Funktionen des Systems gut integriert sind.",
+            "Ich finde, dass es im System zu viele Inkonsistenzen gibt.",
+            "Ich kann mir vorstellen, dass die meisten Leute das System schnell zu beherrschen lernen.",
+            "Ich empfinde die Bedienung als sehr umständlich.",
+            "Ich habe mich bei der Nutzung des Systems sehr sicher gefühlt.",
+            "Ich musste eine Menge Dinge lernen, bevor ich mit dem System arbeiten konnte."
+        ];
+
+        susQuestions.forEach((q, index) => {
+            const num = index + 1;
+            const radioName = `sus_${currentPhase}_q${num}`;
+            const html = `
+            <div class="mb-4 border-bottom pb-3">
+              <p class="question-text">${num}. ${q}</p>
+              <div class="scale-labels">
+                <span class="text-danger">Stimme gar nicht zu</span>
+                <span class="text-success">Stimme voll zu</span>
+              </div>
+              <div class="likert-scale">
+                ${[1, 2, 3, 4, 5].map(val => `
+                    <div class="likert-item">
+                        <label for="${radioName}_${val}">${val}</label>
+                        <input type="radio" name="${radioName}" value="${val}" id="${radioName}_${val}" required>
+                    </div>
+                `).join('')}
+              </div>
+            </div>
+            `;
+            container.innerHTML += html;
+        });
+    }
+
+    // معالجة نموذج SUS
+    document.getElementById('susForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let score = 0;
+        const answers = [];
+
+        for (let i = 1; i <= 10; i++) {
+            const radioName = `sus_${currentPhase}_q${i}`;
+            const el = document.querySelector(`input[name="${radioName}"]:checked`);
+            if (!el) return; // حماية إضافية
+            const val = parseInt(el.value);
+            answers.push({ question_id: i, value: val });
+
+            if (i % 2 !== 0) {
+                score += (val - 1);
+            } else {
+                score += (5 - val);
+            }
+        }
+        const finalSusScore = score * 2.5;
+
+        let participantData = JSON.parse(localStorage.getItem('participantData'));
+
+        // دلوقتي: أول SUS = Tabelle، تاني SUS = Text
+        if (currentPhase === 'table') {
+            participantData.sus_score_table = finalSusScore;
+            participantData.sus_answers_table = answers;
+            localStorage.setItem('participantData', JSON.stringify(participantData));
+
+            document.getElementById('sus-page').classList.remove('active');
+            document.getElementById('pause-page').classList.add('active');
+            window.scrollTo(0, 0);
+        } else {
+            participantData.sus_score_text = finalSusScore;
+            participantData.sus_answers_text = answers;
+            participantData.endTime = Date.now();
+            participantData.totalDuration = participantData.endTime - participantData.startTime;
+            localStorage.setItem('participantData', JSON.stringify(participantData));
+
+            document.getElementById('sus-page').classList.remove('active');
+            document.getElementById('completion-page').classList.add('active');
+
+            // 8. إلغاء التحذير عند الانتهاء
+            window.onbeforeunload = null;
+            window.scrollTo(0, 0);
+        }
+    });
+
+    function startPartTwo() {
+        // بعد الـ Pause ننتقل للـ Text Produkte
+        document.getElementById('products-page').classList.remove('active');
+        document.getElementById('pause-page').classList.remove('active');
+        document.getElementById('text-products-page').classList.add('active');
+
+        currentPhase = 'text';
+        initProductTimer(1);
+
+        let participantData = JSON.parse(localStorage.getItem('participantData'));
+        participantData.currentTask = 'text';
+        localStorage.setItem('participantData', JSON.stringify(participantData));
+
+        window.scrollTo(0, 0);
+    }
+
+    function downloadData() {
+        const data = JSON.parse(localStorage.getItem('participantData'));
+
+        if (!data) {
+            alert('Keine Daten gefunden!');
+            return;
+        }
+
+        let csvContent = 'data:text/csv;charset=utf-8,';
+        // تزبيط الـ CSV: إضافة TotalDuration_ms لكل صف
+        csvContent += 'Participant_ID;Group;Age;Gender;Tech_Exp;Condition;Product;Time_ms;Errors;SUS_Score;TotalDuration_ms\n';
+
+        // دمج النتائج بشكل منظم (نبدأ بالـ Table ثم Text)
+        const phases = [
+            { name: 'Table', results: data.table_results, sus: data.sus_score_table },
+            { name: 'Text', results: data.text_results, sus: data.sus_score_text }
+        ];
+
+        phases.forEach(phase => {
+            if (phase.results && Array.isArray(phase.results)) {
+                phase.results.forEach(row => {
+                    csvContent +=
+                        `${data.id};${data.group};${data.age};${data.gender};${data.techExp};` +
+                        `${phase.name};${row.product_id};${row.time};${row.errors};` +
+                        `${(phase.sus != null ? phase.sus : 'N/A')};` +
+                        `${(data.totalDuration != null ? data.totalDuration : 'N/A')}\n`;
+                });
+            }
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', 'Results_' + data.id + '.csv');
+        document.body.appendChild(link);
+
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>
