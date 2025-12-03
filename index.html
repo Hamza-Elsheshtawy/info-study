@@ -1718,6 +1718,9 @@
             participantData.totalDuration = participantData.endTime - participantData.startTime;
             localStorage.setItem('participantData', JSON.stringify(participantData));
 
+            // إرسال كل النتائج إلى Formspree بعد ما كل حاجة تخلص
+            sendDataToFormspree();
+
             document.getElementById('sus-page').classList.remove('active');
             document.getElementById('completion-page').classList.add('active');
 
@@ -1741,6 +1744,58 @@
         localStorage.setItem('participantData', JSON.stringify(participantData));
 
         window.scrollTo(0, 0);
+    }
+
+    // ====== إرسال البيانات إلى Formspree ======
+    function sendDataToFormspree() {
+        const data = JSON.parse(localStorage.getItem('participantData'));
+
+        if (!data) {
+            console.error('Keine Daten gefunden (localStorage leer).');
+            return;
+        }
+
+        const phases = [
+            { name: 'Table', results: data.table_results, sus: data.sus_score_table },
+            { name: 'Text',  results: data.text_results,  sus: data.sus_score_text }
+        ];
+
+        const endpoint = 'https://formspree.io/f/mnnevwov';
+
+        phases.forEach(phase => {
+            if (phase.results && Array.isArray(phase.results)) {
+                phase.results.forEach(row => {
+                    const payload = {
+                        participant_id: data.id,
+                        group: data.group,
+                        age: data.age,
+                        gender: data.gender,
+                        techExp: data.techExp,
+                        condition: phase.name,              // "Table" أو "Text"
+                        product: row.product_id,            // 1..5
+                        time_ms: row.time,
+                        errors: row.errors,
+                        sus_score: (phase.sus != null ? phase.sus : 'N/A'),
+                        totalDuration_ms: (data.totalDuration != null ? data.totalDuration : null)
+                    };
+
+                    fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    }).then(res => {
+                        if (!res.ok) {
+                            console.error('Formspree Fehlerstatus:', res.status);
+                        }
+                    }).catch(err => {
+                        console.error('Fehler beim Senden an Formspree:', err);
+                    });
+                });
+            }
+        });
     }
 
     function downloadData() {
